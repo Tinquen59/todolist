@@ -13,7 +13,7 @@ You can run mongodb with this command :
 You have to create **.env** file at the root of api folder
 
 ```js
-//.env file
+// .env file
 
 // Create your access token secret
 ACCESS_TOKEN_SECRET=

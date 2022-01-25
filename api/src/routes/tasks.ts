@@ -7,7 +7,7 @@ import {
     allTasksController,
     detailTaskController,
     updateTaskController,
-    removeTaskController
+    removeTaskController,
 } from "../controllers/task";
 
 router.post("/add-new-task", auth, addNewTask);
