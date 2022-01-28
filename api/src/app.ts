@@ -1,6 +1,7 @@
 import express from "express";
 import bodyParser from "body-parser";
 import mongoose from "mongoose";
+import cors from "cors";
 
 import { MONGODB_URI } from "./utils/secrets";
 import routerUser from "./routes/users";
@@ -22,6 +23,7 @@ mongoose
 
 // Express configuration
 app.set("port", 4000);
+app.use(cors());
 app.use(bodyParser.json());
 app.use("/users", routerUser);
 app.use("/tasks", routerTask);
