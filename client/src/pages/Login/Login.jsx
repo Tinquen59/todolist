@@ -42,7 +42,7 @@ export default function Login() {
 
     useEffect(() => {
         // If have token go to home page
-        if (localStorage.getItem("token") && isSend) navigate("/");
+        if (!!localStorage.getItem("token") != null && isSend) navigate("/");
     }, [isSend, navigate]);
 
     return (

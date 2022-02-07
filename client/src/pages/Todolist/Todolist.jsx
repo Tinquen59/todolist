@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { faPlusCircle } from "@fortawesome/free-solid-svg-icons";
 import { Link, Outlet, useLocation } from "react-router-dom";
+import axiosClient from "../../utils/instanceAxios";
 
 import { getRequest, deleteRequest } from "../../utils/callAPI";
 import Task from "../../components/Task/Task";
@@ -25,6 +26,11 @@ export default function Todolist() {
 
     const getAllTasks = async () => {
         try {
+            console.log(
+                "client axios",
+                axiosClient.defaults.headers.common["Authorization"]
+            );
+
             const response = await getRequest("tasks/all-tasks");
             console.log(response);
 
@@ -64,6 +70,15 @@ export default function Todolist() {
             getAllTasks();
         }
     }, [location.pathname]);
+
+    useEffect(() => {
+        console.log("------------");
+        console.log(
+            "je change",
+            axiosClient.defaults.headers.common["Authorization"]
+        );
+        console.log("------------");
+    }, [axiosClient.defaults.headers.common["Authorization"]]);
 
     if (error) return <h1>Oups, une erreur est survenue</h1>;
 
