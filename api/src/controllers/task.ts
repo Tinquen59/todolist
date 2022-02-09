@@ -86,7 +86,7 @@ export const removeManyTasksController = async (
     const { body } = req;
 
     try {
-        const ids: string[] = Object.values(body);
+        const ids = body.map((taskId: { _id: string }): string => taskId._id);
 
         const filter = {
             _id: { $in: ids },

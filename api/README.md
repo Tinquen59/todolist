@@ -96,4 +96,12 @@ http://localhost:4000/tasks/add-new-task
             "descritpion": "Faire une pause"
         }
         ```
+-   Delete **MANY** task**s** : `POST /remove-many-tasks`
+    -   Data to be transmitted :
+        ```json
+        [
+            { "_id": "6203f1af0f98b2844a8680ae" },
+            { "_id": "6203f1a70f98b2844a8680aa" }
+        ]
+        ```
 -   Delete task : `DELETE : /task/:id`
