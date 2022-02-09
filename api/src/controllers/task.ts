@@ -79,6 +79,33 @@ export const updateTaskController = async (req: Request, res: Response) => {
     }
 };
 
+export const removeManyTasksController = async (
+    req: Request,
+    res: Response
+) => {
+    const { body } = req;
+
+    try {
+        const ids: string[] = Object.values(body);
+
+        const filter = {
+            _id: { $in: ids },
+        };
+
+        const deleteManyTasks = await Task.deleteMany(filter);
+
+        // `1` if MongoDB deleted a doc, `0` if no docs matched the filter `{ _id: ... }`
+        if (deleteManyTasks.deletedCount === 0)
+            return res
+                .status(500)
+                .json({ error: "Error ! Filter does not match" });
+
+        return res.status(200).json({ message: "Deleted tasks" });
+    } catch (error) {
+        return res.status(500).json({ error });
+    }
+};
+
 export const removeTaskController = async (req: Request, res: Response) => {
     try {
         const filter = {
