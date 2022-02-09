@@ -1,12 +1,25 @@
 import PropTypes from "prop-types";
 import GroupButtonTask from "../GroupButtonTask/GroupButtonTask";
 
-import { TaskContainer, TaskInput, TaskDescription } from "./styles";
+import { TaskContainer, TaskDescription } from "./styles";
+import { InputCheckbox } from "../../utils/style/Atoms";
 
-function Task({ id, description, removeTask }) {
+function Task({
+    id,
+    description,
+    isChecked,
+    removeTask,
+    handleChangeCheckbox,
+}) {
+    isChecked = isChecked !== undefined ? isChecked : false;
     return (
         <TaskContainer>
-            <TaskInput type="checkbox" value={id} />
+            <InputCheckbox
+                type="checkbox"
+                name={id}
+                checked={isChecked}
+                onChange={handleChangeCheckbox}
+            />
 
             <TaskDescription>{description}</TaskDescription>
 

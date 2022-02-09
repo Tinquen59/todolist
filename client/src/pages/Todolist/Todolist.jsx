@@ -3,16 +3,17 @@ import { faPlusCircle } from "@fortawesome/free-solid-svg-icons";
 import { Link, Outlet, useLocation } from "react-router-dom";
 import axiosClient from "../../utils/instanceAxios";
 
-import { getRequest, deleteRequest } from "../../utils/callAPI";
+import { getRequest, deleteRequest, postRequest } from "../../utils/callAPI";
 import Task from "../../components/Task/Task";
+import Button from "../../components/Button/Button";
 
+import { InputCheckbox } from "../../utils/style/Atoms";
 import {
     Container,
     CardContainer,
     CardHeader,
     CardBody,
     CardFooter,
-    TextAction,
     IconPlus,
     TextNoData,
 } from "./styles";
@@ -23,6 +24,47 @@ export default function Todolist() {
     const [allTasks, setAllTasks] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(false);
+
+    const handleChangeCheckbox = (e) => {
+        const { name, checked } = e.target;
+        let tempAllTasks = [];
+
+        if (name === "allChecked") {
+            tempAllTasks = allTasks.map((task) => ({
+                ...task,
+                isChecked: checked,
+            }));
+        } else {
+            tempAllTasks = allTasks.map((task) =>
+                task._id === name ? { ...task, isChecked: checked } : task
+            );
+        }
+
+        setAllTasks(tempAllTasks);
+    };
+
+    const deleteManyTasks = async () => {
+        try {
+            const tasksToDelete = allTasks
+                .filter((task) => task?.isChecked)
+                .map((task) => ({
+                    _id: task._id,
+                }));
+
+            console.log("tasks to delete", tasksToDelete);
+
+            const response = await postRequest(
+                `/tasks/remove-many-tasks`,
+                tasksToDelete
+            );
+
+            console.log(response);
+
+            getAllTasks();
+        } catch (error) {
+            console.log(error);
+        }
+    };
 
     const getAllTasks = async () => {
         try {
@@ -94,14 +136,20 @@ export default function Todolist() {
 
                     <CardBody>
                         {allTasks.length ? (
-                            allTasks.map(({ _id, description }, index) => (
-                                <Task
-                                    id={_id}
-                                    description={description}
-                                    key={index}
-                                    removeTask={removeTask}
-                                />
-                            ))
+                            allTasks.map(
+                                ({ _id, description, isChecked }, index) => (
+                                    <Task
+                                        id={_id}
+                                        description={description}
+                                        isChecked={isChecked}
+                                        removeTask={removeTask}
+                                        handleChangeCheckbox={
+                                            handleChangeCheckbox
+                                        }
+                                        key={index}
+                                    />
+                                )
+                            )
                         ) : (
                             <TextNoData>Vous n'avez pas de tâche !</TextNoData>
                         )}
@@ -109,8 +157,29 @@ export default function Todolist() {
 
                     <CardFooter>
                         <div>
-                            <TextAction>Tout sélectionner</TextAction>
-                            <TextAction>Supprimer la sélection</TextAction>
+                            <label>
+                                <InputCheckbox
+                                    type="checkbox"
+                                    name="allChecked"
+                                    checked={
+                                        allTasks.filter(
+                                            (task) => task?.isChecked !== true
+                                        ).length < 1
+                                    }
+                                    onChange={handleChangeCheckbox}
+                                />
+                                <span>Tout sélectionner</span>
+                            </label>
+                            <Button
+                                contentButton="Supprimer la sélection"
+                                typeButton="deleteMany"
+                                isDisabled={
+                                    allTasks.filter(
+                                        (task) => task?.isChecked === true
+                                    ).length < 1
+                                }
+                                deleteManyTasks={deleteManyTasks}
+                            />
                         </div>
 
                         <Link to="new-task">

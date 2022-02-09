@@ -31,6 +31,20 @@ export const MyButton = styled.button`
                         background-color: ${colors.backgroundLight};
                     }
                 `;
+            case "deleteMany":
+                return css`
+                    border-color: ${colors.red};
+                    background-color: ${colors.red};
+                    color: ${colors.backgroundLight};
+                    &:disabled {
+                        opacity: 0.5;
+                        cursor: default;
+                    }
+                    &:not(:disabled):hover {
+                        background-color: ${colors.backgroundLight};
+                        color: ${colors.red};
+                    }
+                `;
             default:
                 return css`
                     color: ${colors.primary};

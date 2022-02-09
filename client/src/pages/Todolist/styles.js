@@ -41,15 +41,6 @@ export const CardFooter = styled.div`
     border-bottom-right-radius: 50px;
 `;
 
-export const TextAction = styled.p`
-    display: inline-block;
-    cursor: pointer;
-
-    &:not(:first-child) {
-        margin-left: 1.4em;
-    }
-`;
-
 export const IconPlus = styled(FontAwesomeIcon)`
     position: relative;
     color: ${colors.primary};
