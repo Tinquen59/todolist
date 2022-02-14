@@ -1,5 +1,5 @@
 import { CardConexionContainer } from "./styles";
 
-export default function CardConexion(props) {
-    return <CardConexionContainer>{props.children}</CardConexionContainer>;
+export default function CardConexion({ children }) {
+    return <CardConexionContainer>{children}</CardConexionContainer>;
 }

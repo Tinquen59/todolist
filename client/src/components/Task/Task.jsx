@@ -29,7 +29,11 @@ function Task({
 }
 
 Task.propTypes = {
-    description: PropTypes.string,
+    id: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    isChecked: PropTypes.bool,
+    removeTask: PropTypes.func.isRequired,
+    handleChangeCheckbox: PropTypes.func.isRequired,
 };
 
 export default Task;

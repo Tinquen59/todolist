@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import colors from "../../utils/style/colors";
+import device from "../../utils/style/device";
 
 export const Container = styled.section`
     display: flex;
@@ -39,6 +40,20 @@ export const CardFooter = styled.div`
     border-top: 2px solid ${colors.primaryOpacity};
     border-bottom-left-radius: 50px;
     border-bottom-right-radius: 50px;
+`;
+
+export const FooterLeftDiv = styled.div`
+    display: flex;
+    align-items: center;
+
+    @media ${device.tablet} {
+        flex-direction: column;
+        align-items: flex-start;
+
+        & label {
+            margin-bottom: 0.8em;
+        }
+    }
 `;
 
 export const IconPlus = styled(FontAwesomeIcon)`

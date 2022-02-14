@@ -81,7 +81,7 @@ export default function Signup() {
 
             <CardChangeConnexion>
                 <p>Vous avez un compte ?</p>
-                <StyledLink to="/connection">Inscrivez-vous</StyledLink>
+                <StyledLink to="/connection">Connectez-vous</StyledLink>
             </CardChangeConnexion>
         </SignupContainer>
     );

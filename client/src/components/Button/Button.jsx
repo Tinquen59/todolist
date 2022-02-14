@@ -17,7 +17,7 @@ function Button({ contentButton, typeButton, isDisabled, deleteManyTasks }) {
 Button.propTypes = {
     contentButton: PropTypes.string.isRequired,
     typeButton: PropTypes.string,
-    isDisable: PropTypes.bool,
+    isDisabled: PropTypes.bool,
     deleteManyTasks: PropTypes.func,
 };
 

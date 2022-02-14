@@ -24,8 +24,8 @@ function GroupButtonTask({ taskId, removeTask }) {
 }
 
 GroupButtonTask.propTypes = {
-    editTask: PropTypes.func,
-    removeTask: PropTypes.func,
+    taskId: PropTypes.string.isRequired,
+    removeTask: PropTypes.func.isRequired,
 };
 
 export default GroupButtonTask;

@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import colors from "../../utils/style/colors";
+import device from "../../utils/style/device";
 
 export const Container = styled.div`
     position: fixed;
@@ -31,6 +32,10 @@ export const ModalContainer = styled.div`
     padding: 1.6em 2em;
     background-color: ${colors.backgroundLight};
     border-radius: 50px;
+
+    @media ${device.tablet} {
+        width: 75%;
+    }
 `;
 
 export const IconClose = styled(FontAwesomeIcon)`
@@ -52,6 +57,11 @@ export const FormContainer = styled.form`
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    &,
+    & label {
+        width: 100%;
+    }
 `;
 
 export const SpanLabel = styled.span`
@@ -71,4 +81,8 @@ export const TextareaDescription = styled.textarea`
     height: 210px;
     border-radius: 50px;
     outline-color: ${colors.primary};
+
+    @media ${device.tablet} {
+        width: 100%;
+    }
 `;

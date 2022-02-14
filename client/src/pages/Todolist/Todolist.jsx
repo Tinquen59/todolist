@@ -14,6 +14,7 @@ import {
     CardHeader,
     CardBody,
     CardFooter,
+    FooterLeftDiv,
     IconPlus,
     TextNoData,
 } from "./styles";
@@ -156,7 +157,7 @@ export default function Todolist() {
                     </CardBody>
 
                     <CardFooter>
-                        <div>
+                        <FooterLeftDiv>
                             <label>
                                 <InputCheckbox
                                     type="checkbox"
@@ -180,7 +181,7 @@ export default function Todolist() {
                                 }
                                 deleteManyTasks={deleteManyTasks}
                             />
-                        </div>
+                        </FooterLeftDiv>
 
                         <Link to="new-task">
                             <IconPlus icon={faPlusCircle} />

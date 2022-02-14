@@ -13,6 +13,9 @@ function FormGroup({ labelText, typeInput, register, isRequired }) {
 
 FormGroup.prototype = {
     labelText: PropTypes.string.isRequired,
+    typeInput: PropTypes.string.isRequired,
+    register: PropTypes.func.isRequired,
+    isRequired: PropTypes.bool.isRequired,
 };
 
 export default FormGroup;

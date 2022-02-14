@@ -1,7 +1,5 @@
 import styled from "styled-components";
 
-import colors from "../../utils/style/colors";
-
 export const TaskContainer = styled.div`
     display: flex;
     justify-content: space-between;
@@ -14,4 +12,5 @@ export const TaskContainer = styled.div`
 export const TaskDescription = styled.p`
     max-width: 50%;
     font-size: clamp(15px, 1.222vw, 22px);
+    text-align: center;
 `;
